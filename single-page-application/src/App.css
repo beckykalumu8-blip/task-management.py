@@ -1,0 +1,71 @@
+.app {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.project-item {
+  border: 1px solid #cc9393;
+  padding: 15px;
+  text-align: center;
+}
+
+.project-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.add-project-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.add-project-form input,
+.add-project-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.add-project-form button {
+  padding: 10px 20px;
+  background-color: #2a435e;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-project-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-list {
+    grid-template-columns: 1fr;
+  }
+}
