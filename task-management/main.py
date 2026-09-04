@@ -1,6 +1,5 @@
-
-
-from task_utils import (
+# Import functions from task_manager.task_utils package
+from task_manager.task_utils import (
     add_task,
     mark_task_as_complete,
     view_pending_tasks,
@@ -9,6 +8,7 @@ from task_utils import (
 )
 
 
+# Define the main function
 def main():
     while True:
         print("\nTask Management System")
@@ -21,6 +21,8 @@ def main():
         choice = input("Enter your choice (1-5): ")
 
         if choice == "1":
+            print("\nAdd a New Task")
+
             title = input("Enter task title: ")
             description = input("Enter task description: ")
             due_date = input("Enter due date (YYYY-MM-DD): ")
@@ -28,25 +30,29 @@ def main():
             add_task(title, description, due_date)
 
         elif choice == "2":
-            if not tasks:
-                print("There are no tasks.")
+            if len(tasks) == 0:
+                print("There are no tasks to complete.")
                 continue
 
             print("\nTasks:")
 
             for index, task in enumerate(tasks, start=1):
-                status = "Completed" if task["completed"] else "Pending"
+                if task["completed"]:
+                    status = "Completed"
+                else:
+                    status = "Pending"
+
                 print(
-                    f"{index}. {task['title']} - "
-                    f"{status}"
+                    f"{index}. {task['title']} "
+                    f"- {status}"
                 )
 
             try:
-                task_number = int(
+                index = int(
                     input("Enter the task number to mark as complete: ")
                 )
 
-                mark_task_as_complete(task_number - 1)
+                mark_task_as_complete(index)
 
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -55,8 +61,7 @@ def main():
             view_pending_tasks()
 
         elif choice == "4":
-            progress = calculate_progress()
-            print(f"Task Progress: {progress:.2f}%")
+            calculate_progress()
 
         elif choice == "5":
             print("Exiting the program...")
@@ -68,4 +73,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

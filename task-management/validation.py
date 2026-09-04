@@ -1,39 +1,36 @@
-
 from datetime import datetime
 
 
 def validate_task_title(title):
-    """Validate the task title."""
-    if not title or not title.strip():
-        print("Error: Task title cannot be empty.")
-        return False
+    if not isinstance(title, str):
+        return False, "Title must be a string."
 
-    if len(title.strip()) > 100:
-        print("Error: Task title cannot exceed 100 characters.")
-        return False
+    if title.strip() == "":
+        return False, "Title cannot be empty."
 
-    return True
+    if len(title.strip()) < 3:
+        return False, "Title must be at least 3 characters long."
+
+    return True, "Valid title."
 
 
 def validate_task_description(description):
-    """Validate the task description."""
-    if not description or not description.strip():
-        print("Error: Task description cannot be empty.")
-        return False
+    if not isinstance(description, str):
+        return False, "Description must be a string."
 
-    if len(description.strip()) > 500:
-        print("Error: Task description cannot exceed 500 characters.")
-        return False
+    if description.strip() == "":
+        return False, "Description cannot be empty."
 
-    return True
+    return True, "Valid description."
 
 
 def validate_due_date(due_date):
-    """Validate the due date format."""
+    if not isinstance(due_date, str):
+        return False, "Due date must be a string."
+
     try:
         datetime.strptime(due_date, "%Y-%m-%d")
-        return True
-    except ValueError:
-        print("Error: Due date must be in YYYY-MM-DD format.")
-        return False
+        return True, "Valid due date."
 
+    except ValueError:
+        return False, "Due date must be in YYYY-MM-DD format."
